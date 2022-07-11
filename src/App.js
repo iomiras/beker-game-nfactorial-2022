@@ -7,9 +7,16 @@ function App() {
   const [userValue, setUserValue] = useState('')
   const [priceInputState, setPriceInputState] = useState('')
   const [realPriceState, setRealPriceState] = useState('none')
+  const [gameState, setGameState] = useState('none')
   const [score, setScore] = useState(0)
   const [points, setPoints] = useState(0)
   const element = elements[index]
+
+  const startGame = () => {
+    setPoints(0)
+    setScore(0)
+    setGameState('')
+  }
 
   const showResults = () => {
     setPriceInputState('none')
@@ -17,29 +24,52 @@ function App() {
     let userPrice = parseInt(userValue)
     let realPrice = parseInt(element.intPrice)
     let deltaPrice = Math.abs(userPrice - realPrice)
-    if (deltaPrice > 0.85 * realPrice) { setPoints(0); setScore(score + 0) }
+    if (deltaPrice > 0.85 * realPrice || !userPrice) { setPoints(0); setScore(score + 0) }
     else {
-      setPoints(Math.floor(1000 - deltaPrice / realPrice * 1000));
-      setScore(score + points)
+      let point = Math.floor(1000 - deltaPrice / realPrice * 1000)
+      setPoints(point);
+      setScore(score + point)
     }
     // if (index < 2) setIndex(index + 1)
     // else setIndex(0)
+  }
+
+  const changeRound = () => {
+    console.log(score)
+    setPriceInputState('')
+    setRealPriceState('none')
+    setUserValue('')
+    if (index < 2) setIndex(index + 1)
+    else finishGame()
   }
 
   const handleChange = (event) => {
     setUserValue(event.target.value)
   }
 
+  const finishGame = () => {
+    setIndex(0)
+    setGameState('none')
+    console.log(score)
+  }
   //  style={{ display: "none" }}
 
   return (
     <div className="App">
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Rubik:wght@300&display=swap" rel="stylesheet" />
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Rubik:wght@300&display=swap" rel="stylesheet" />
+      </>
 
-      <div className='game-wrapper'>
-        <div className='round-points'>
+      <div className='main-menu-wrapper' style={{ display: gameState ? '' : 'none' }}>
+        <div className='game-title'>Шығын.kz</div>
+        <div className='prev-result' style={{ display: score ? '' : 'none' }}>{score >= 1500 ? 'Congratulations!' : ''} You are {score >= 1500 ? 'a responsible' : 'an irresponsible'} citizen!</div>
+        <button onClick={startGame} className='start-button' type='submit'>Play {score ? 'again' : ''}</button>
+      </div>
+
+      <div className='game-wrapper' style={{ display: gameState ? gameState : '' }}>
+        <div className='round-order'>
           Round {index + 1}/3
         </div>
 
@@ -68,7 +98,7 @@ function App() {
 
         <div className='next-row' style={{ display: realPriceState ? realPriceState : '' }}>
           <div className='points'>{points} points</div>
-          <button className='next-button'>Next</button>
+          <button className='next-button' onClick={changeRound}>Next</button>
         </div>
       </div>
     </div>
