@@ -68,7 +68,7 @@ function App() {
       <div className='main-menu-wrapper' style={{ display: gameState ? '' : 'none' }}>
         <div className='game-title'>Шығын.kz</div>
         <div className='prev-result' style={{ display: gamePassState ? 'none' : '' }}>Попробуй угадать сколько было потрачено денег на гос. заказы</div>
-        <div className='prev-result' style={{ display: gamePassState ? '' : 'none' }}>You scored <b>{score}</b>.</div>
+        <div className='prev-result' style={{ display: gamePassState ? '' : 'none' }}>You scored <b>{score}/3000</b>.</div>
         <div className='prev-result' style={{ display: gamePassState ? '' : 'none' }}>{score >= 1500 ? 'Congratulations!' : ''} You are {score >= 1500 ? 'a responsible' : 'an irresponsible'} citizen!</div>
         <button onClick={startGame} className='start-button' type='submit'>Play {gamePassState ? 'again' : ''}</button>
       </div>
