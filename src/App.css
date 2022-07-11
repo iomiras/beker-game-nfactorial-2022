@@ -1,38 +1,143 @@
 .App {
-  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  /* align-items: center; */
+  background-color: azure;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.game-wrapper {
+  height: 80vh;
+  width: 100%;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+
+  background-color: azure;
+}
+
+.image-wrapper {
+  max-height: 300px;
+  width: auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.real-price {
+  position: absolute;
+  width: 100%;
+  bottom: 13%;
+  font-size: 28px;
+  text-align: center;
+  padding: 12px 0 12px 0;
+  border-right: 1px lightslategrey solid;
+  border-left: 1px lightslategrey solid;
+  /* background-color: yellowgreen; */
+  background: hsla(0, 0%, 100%, .9);
+  
+  color: #306172
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  border: 1px lightslategrey solid;
+}
+
+.round-points {
+  padding-top: 30px;
+  margin-bottom: 20px;
+  color: #81c9cf;
+  font-family: 'Roboto', Courier, monospace;
+  font-size: 22px;
+  font-weight: 500;
+  /* border: 2px red dotted; */
+}
+
+.item-name {
+  color: #306172;
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  /* border: 2px red dotted; */
+}
+
+.item-desc {
+  margin: 10px 0 10px 0;
+  color: dimgray;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  max-width: 400px;
+  text-align: center;
+  /* border: 1px black solid; */
+}
+
+@media (max-width: 500px) {
+  .item-desc {
+    font-size: 14px;
+    padding: 0 20px 0 20px;
+  }
+
+  .image-wrapper {max-width: 600px;
+    padding: 0 20px 0 20px;
+  }
+}
+
+.guess-row {
+  /* border: 2px solid saddlebrown; */
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.price-input {
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  text-align: center;
+
+  padding: 9px;
+  width: 200px;
+
+  border: 2px solid #306172;
+  border-right: none;
+  outline: 0 !important;
+  
+  box-sizing: border-box;
+  border-radius: 0%;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.submit {
+  width: 46px;
+  height: 100%;
+  border-radius: 0%;
+  border: 2px solid #306172;
+
+  cursor: pointer;
+
+  background-color: #306172;
+
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url('./shygyn-photos/gavel.svg');
+  /* border: #306172 2px dotted; */
+}
+
+.submit:hover {
+
+  background-repeat: no-repeat;
+    background-position: 50%;
+  background-image: url('./shygyn-photos/gavel-down-hover.svg');
 }
