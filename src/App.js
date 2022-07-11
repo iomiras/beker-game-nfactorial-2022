@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
-import { elements } from './data';
+import { data } from './data';
+let elements = data
 
 function App() {
   const [index, setIndex] = useState(0)
@@ -11,12 +12,15 @@ function App() {
   const [score, setScore] = useState(0)
   const [points, setPoints] = useState(0)
   const [gamePassState, setGamePassState] = useState(false)
-  const element = elements[index]
 
+  const element = elements[index]
   const startGame = () => {
     setPoints(0)
     setScore(0)
     setGameState('')
+    const questionsNumber = 3
+    const shuffled = [...data].sort(() => 0.5 - Math.random());
+    elements = shuffled.slice(0, questionsNumber)
   }
 
   const showResults = () => {
@@ -63,6 +67,7 @@ function App() {
 
       <div className='main-menu-wrapper' style={{ display: gameState ? '' : 'none' }}>
         <div className='game-title'>Шығын.kz</div>
+        <div className='prev-result' style={{ display: gamePassState ? 'none' : '' }}>Попробуй угадать сколько было потрачено денег на гос. заказы</div>
         <div className='prev-result' style={{ display: gamePassState ? '' : 'none' }}>You scored <b>{score}</b>.</div>
         <div className='prev-result' style={{ display: gamePassState ? '' : 'none' }}>{score >= 1500 ? 'Congratulations!' : ''} You are {score >= 1500 ? 'a responsible' : 'an irresponsible'} citizen!</div>
         <button onClick={startGame} className='start-button' type='submit'>Play {gamePassState ? 'again' : ''}</button>

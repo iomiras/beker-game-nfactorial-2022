@@ -16,7 +16,7 @@ import Tulen from "./shygyn-photos/tulen.jpg"
 import Posol from "./shygyn-photos/posol.jpg"
 import DeepGorod from "./shygyn-photos/deepgorod.jpg"
 
-const data = [
+export const data = [
     {
         "photo": Gora,
         "price": "2 500 000",
@@ -154,7 +154,3 @@ const data = [
         "desc": 'Дипломатический городок строят для иностранных посольств и консульств. Эти коттеджи, построенные за наш с вами счет, сдают бесплатно.'
     }
 ]
-
-const questionsNumber = 3
-const shuffled = [...data].sort(() => 0.5 - Math.random());
-export const elements = shuffled.slice(0, questionsNumber)
