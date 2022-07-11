@@ -10,6 +10,7 @@ function App() {
   const [gameState, setGameState] = useState('none')
   const [score, setScore] = useState(0)
   const [points, setPoints] = useState(0)
+  const [gamePassState, setGamePassState] = useState(false)
   const element = elements[index]
 
   const startGame = () => {
@@ -50,7 +51,7 @@ function App() {
   const finishGame = () => {
     setIndex(0)
     setGameState('none')
-    console.log(score)
+    setGamePassState(true)
   }
   //  style={{ display: "none" }}
 
@@ -64,8 +65,9 @@ function App() {
 
       <div className='main-menu-wrapper' style={{ display: gameState ? '' : 'none' }}>
         <div className='game-title'>Шығын.kz</div>
-        <div className='prev-result' style={{ display: score ? '' : 'none' }}>{score >= 1500 ? 'Congratulations!' : ''} You are {score >= 1500 ? 'a responsible' : 'an irresponsible'} citizen!</div>
-        <button onClick={startGame} className='start-button' type='submit'>Play {score ? 'again' : ''}</button>
+        <div className='prev-result' style={{ display: gamePassState ? '' : 'none' }}>You scored {score}.</div>
+        <div className='prev-result' style={{ display: gamePassState ? '' : 'none' }}>{score >= 1500 ? 'Congratulations!' : ''} You are {score >= 1500 ? 'a responsible' : 'an irresponsible'} citizen!</div>
+        <button onClick={startGame} className='start-button' type='submit'>Play {gamePassState ? 'again' : ''}</button>
       </div>
 
       <div className='game-wrapper' style={{ display: gameState ? gameState : '' }}>
